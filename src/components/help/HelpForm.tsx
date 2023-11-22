@@ -36,7 +36,7 @@ const schema = z
   })
   .required();
 
-type FormInputs = z.infer<typeof schema>;
+export type HelpRequestOffer = z.infer<typeof schema>;
 
 type HelpFormProps = {
   title: string;
@@ -47,11 +47,11 @@ const HelpForm: React.FC<HelpFormProps> = ({ title }: HelpFormProps) => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormInputs>({
+  } = useForm<HelpRequestOffer>({
     resolver: zodResolver(schema),
   });
 
-  const onSubmit: SubmitHandler<FormInputs> = (data) => {
+  const onSubmit: SubmitHandler<HelpRequestOffer> = (data) => {
     // Handle form submission
     console.log(data);
   };
@@ -164,6 +164,7 @@ const HelpForm: React.FC<HelpFormProps> = ({ title }: HelpFormProps) => {
           {...register("gender")}
           className="my-1 rounded border border-solid border-black px-4 py-1 text-center basis-2/3"
         >
+          <option value="">Select an option</option>
           <option value="male">Male</option>
           <option value="female">Female</option>
         </select>
@@ -179,9 +180,11 @@ const HelpForm: React.FC<HelpFormProps> = ({ title }: HelpFormProps) => {
           {...register("helpType")}
           className="my-1 rounded border border-solid border-black px-4 py-1 text-center basis-2/3"
         >
+          <option value="">Select an option</option>
           <option value="rentHouse">Rent a House</option>
           <option value="findRoommate">Find a Roommate</option>
           <option value="food">Food</option>
+          <option value="clothing">Clothing</option>
           <option value="money">Money</option>
         </select>
         {errors.helpType && (

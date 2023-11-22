@@ -1,0 +1,222 @@
+{
+  "helpRequests": [
+    {
+      "firstName": "John",
+      "lastName": "Doe",
+      "phoneNumber": "123456789",
+      "houseNumber": "756",
+      "streetName": "Rue Radisson",
+      "city": "Montréal",
+      "postalCode": "H8R 2X3",
+      "gender": "male",
+      "helpType": "rentHouse",
+      "details": "Looking for a place to rent in Montréal."
+    },
+    {
+      "firstName": "Jane",
+      "lastName": "Smith",
+      "phoneNumber": "987654321",
+      "houseNumber": "123",
+      "streetName": "Avenue Lafayette",
+      "city": "Toronto",
+      "postalCode": "M5H 2N2",
+      "gender": "female",
+      "helpType": "findRoommate",
+      "details": "Seeking a roommate in Toronto. I have a house, looking for someone to share expenses."
+    }
+  ],
+  "helpOffers": [
+    {
+      "firstName": "Ahmed",
+      "lastName": "Khan",
+      "phoneNumber": "555555555",
+      "houseNumber": "789",
+      "streetName": "Boulevard Saint-Laurent",
+      "city": "Vancouver",
+      "postalCode": "V6Z 1K7",
+      "gender": "male",
+      "helpType": "food",
+      "details": "Willing to provide groceries to those in need. Please contact for assistance."
+    },
+    {
+      "firstName": "Sara",
+      "lastName": "Williams",
+      "phoneNumber": "111111111",
+      "houseNumber": "456",
+      "streetName": "Street 42",
+      "city": "Calgary",
+      "postalCode": "T2P 1J9",
+      "gender": "female",
+      "helpType": "money",
+      "details": "Can offer financial assistance to those facing difficulties. Let me know your situation."
+    },
+    {
+      "firstName": "Ahmed",
+      "lastName": "Khan",
+      "phoneNumber": "555555555",
+      "houseNumber": "789",
+      "streetName": "Boulevard Saint-Laurent",
+      "city": "Vancouver",
+      "postalCode": "V6Z 1K7",
+      "gender": "male",
+      "helpType": "food",
+      "details": "Willing to provide groceries to those in need. Please contact for assistance."
+    },
+    {
+      "firstName": "Sara",
+      "lastName": "Williams",
+      "phoneNumber": "111111111",
+      "houseNumber": "456",
+      "streetName": "Street 42",
+      "city": "Calgary",
+      "postalCode": "T2P 1J9",
+      "gender": "female",
+      "helpType": "money",
+      "details": "Can offer financial assistance to those facing difficulties. Let me know your situation."
+    },
+    {
+      "firstName": "Ahmed",
+      "lastName": "Khan",
+      "phoneNumber": "555555555",
+      "houseNumber": "789",
+      "streetName": "Boulevard Saint-Laurent",
+      "city": "Vancouver",
+      "postalCode": "V6Z 1K7",
+      "gender": "male",
+      "helpType": "food",
+      "details": "Willing to provide groceries to those in need. Please contact for assistance."
+    },
+    {
+      "firstName": "Sara",
+      "lastName": "Williams",
+      "phoneNumber": "111111111",
+      "houseNumber": "456",
+      "streetName": "Street 42",
+      "city": "Calgary",
+      "postalCode": "T2P 1J9",
+      "gender": "female",
+      "helpType": "money",
+      "details": "Can offer financial assistance to those facing difficulties. Let me know your situation."
+    },
+    {
+      "firstName": "Ahmed",
+      "lastName": "Khan",
+      "phoneNumber": "555555555",
+      "houseNumber": "789",
+      "streetName": "Boulevard Saint-Laurent",
+      "city": "Vancouver",
+      "postalCode": "V6Z 1K7",
+      "gender": "male",
+      "helpType": "food",
+      "details": "Willing to provide groceries to those in need. Please contact for assistance."
+    },
+    {
+      "firstName": "Sara",
+      "lastName": "Williams",
+      "phoneNumber": "111111111",
+      "houseNumber": "456",
+      "streetName": "Street 42",
+      "city": "Calgary",
+      "postalCode": "T2P 1J9",
+      "gender": "female",
+      "helpType": "money",
+      "details": "Can offer financial assistance to those facing difficulties. Let me know your situation."
+    },
+    {
+      "firstName": "Ahmed",
+      "lastName": "Khan",
+      "phoneNumber": "555555555",
+      "houseNumber": "789",
+      "streetName": "Boulevard Saint-Laurent",
+      "city": "Vancouver",
+      "postalCode": "V6Z 1K7",
+      "gender": "male",
+      "helpType": "food",
+      "details": "Willing to provide groceries to those in need. Please contact for assistance."
+    },
+    {
+      "firstName": "Sara",
+      "lastName": "Williams",
+      "phoneNumber": "111111111",
+      "houseNumber": "456",
+      "streetName": "Street 42",
+      "city": "Calgary",
+      "postalCode": "T2P 1J9",
+      "gender": "female",
+      "helpType": "money",
+      "details": "Can offer financial assistance to those facing difficulties. Let me know your situation."
+    },
+    {
+      "firstName": "Ahmed",
+      "lastName": "Khan",
+      "phoneNumber": "555555555",
+      "houseNumber": "789",
+      "streetName": "Boulevard Saint-Laurent",
+      "city": "Vancouver",
+      "postalCode": "V6Z 1K7",
+      "gender": "male",
+      "helpType": "food",
+      "details": "Willing to provide groceries to those in need. Please contact for assistance."
+    },
+    {
+      "firstName": "Sara",
+      "lastName": "Williams",
+      "phoneNumber": "111111111",
+      "houseNumber": "456",
+      "streetName": "Street 42",
+      "city": "Calgary",
+      "postalCode": "T2P 1J9",
+      "gender": "female",
+      "helpType": "money",
+      "details": "Can offer financial assistance to those facing difficulties. Let me know your situation."
+    },
+    {
+      "firstName": "Ahmed",
+      "lastName": "Khan",
+      "phoneNumber": "555555555",
+      "houseNumber": "789",
+      "streetName": "Boulevard Saint-Laurent",
+      "city": "Vancouver",
+      "postalCode": "V6Z 1K7",
+      "gender": "male",
+      "helpType": "food",
+      "details": "Willing to provide groceries to those in need. Please contact for assistance."
+    },
+    {
+      "firstName": "Sara",
+      "lastName": "Williams",
+      "phoneNumber": "111111111",
+      "houseNumber": "456",
+      "streetName": "Street 42",
+      "city": "Calgary",
+      "postalCode": "T2P 1J9",
+      "gender": "female",
+      "helpType": "money",
+      "details": "Can offer financial assistance to those facing difficulties. Let me know your situation."
+    },
+    {
+      "firstName": "Ahmed",
+      "lastName": "Khan",
+      "phoneNumber": "555555555",
+      "houseNumber": "789",
+      "streetName": "Boulevard Saint-Laurent",
+      "city": "Vancouver",
+      "postalCode": "V6Z 1K7",
+      "gender": "male",
+      "helpType": "food",
+      "details": "Willing to provide groceries to those in need. Please contact for assistance."
+    },
+    {
+      "firstName": "Sara",
+      "lastName": "Williams",
+      "phoneNumber": "111111111",
+      "houseNumber": "456",
+      "streetName": "Street 42",
+      "city": "Calgary",
+      "postalCode": "T2P 1J9",
+      "gender": "female",
+      "helpType": "money",
+      "details": "Can offer financial assistance to those facing difficulties. Let me know your situation."
+    }
+  ]
+}
