@@ -19,7 +19,7 @@ import {
   VisibilityState,
 } from "@tanstack/react-table";
 
-import { ChevronDown, ChevronDownCircle } from "lucide-react";
+import { ChevronDownCircle } from "lucide-react";
 
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -30,7 +30,7 @@ import {
   DropdownMenuContent,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { ChangeEvent, useState } from "react";
+import { useState } from "react";
 
 import searchIcon from "../../../assets/searchIcon.svg";
 
@@ -105,7 +105,7 @@ export function DataTable<TData, TValue>({
                     key={column.id}
                     className="capitalize"
                     checked={column.getIsVisible()}
-                    onCheckedChange={(value: ChangeEvent) =>
+                    onCheckedChange={(value: boolean) =>
                       column.toggleVisibility(!!value)
                     }
                   >
