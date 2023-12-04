@@ -1,59 +1,52 @@
-import React from "react";
-import { useForm, SubmitHandler } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
-
-const schema = z
-  .object({
-    firstName: z
-      .string()
-      .min(2, { message: "A valid firstname is required" })
-      .max(50),
-    lastName: z
-      .string()
-      .min(2, { message: "A valid lastname is required" })
-      .max(50),
-    phoneNumber: z
-      .string()
-      .min(8, { message: "A valid phonenumber is required" })
-      .max(15),
-    houseNumber: z
-      .string()
-      .min(1, { message: "A valid house number is required" })
-      .max(10),
-    streetName: z
-      .string()
-      .min(1, { message: "A valid street is required" })
-      .max(100),
-    city: z.string().min(1, { message: "A valid city is required" }).max(50),
-    postalCode: z
-      .string()
-      .min(1, { message: "A valid postal code is required" }),
-
-    gender: z.string().min(1),
-    helpType: z.string().min(1),
-    details: z.string(),
-  })
-  .required();
-
-export type HelpRequestOffer = z.infer<typeof schema>;
+import axios from "@/infrastructure/api/axios";
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { HelpRequestOffer, schema } from "@/domain/models/assistance";
 
 type HelpFormProps = {
   title: string;
+  url: string;
 };
 
-const HelpForm: React.FC<HelpFormProps> = ({ title }: HelpFormProps) => {
+function HelpForm({ title, url }: HelpFormProps) {
+  const [globalError, setGlobalError] = useState("");
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<HelpRequestOffer>({
     resolver: zodResolver(schema),
+    defaultValues: {
+      firstName: "Ahmed",
+      lastName: "Khan",
+      phoneNumber: "555555555",
+      houseNumber: "789",
+      streetName: "Boulevard Saint-Laurent",
+      city: "Vancouver",
+      postalCode: "V6Z 1K7",
+      gender: "male",
+      helpType: "food",
+      details:
+        "Willing to provide groceries to those in need. Please contact for assistance.",
+    },
   });
 
-  const onSubmit: SubmitHandler<HelpRequestOffer> = (data) => {
+  const navigate = useNavigate();
+
+  const onSubmit = async (data: HelpRequestOffer) => {
     // Handle form submission
-    console.log(data);
+    try {
+      const res = await axios.post(url, data);
+      if (res.status === 200) {
+        navigate("../success");
+      } else {
+        setGlobalError("sothing went wrong please try again");
+      }
+    } catch (error) {
+      setGlobalError("sothing went wrong please try again");
+    }
   };
 
   return (
@@ -69,15 +62,11 @@ const HelpForm: React.FC<HelpFormProps> = ({ title }: HelpFormProps) => {
           First Name:
         </label>
         <input
+          id="firstName"
           {...register("firstName")}
           autoFocus
           className="border border-black outline-1 outline-gray-200"
         />
-        {errors.firstName && (
-          <p className="text-xs text-red-500 w-4/5">
-            {errors.firstName.message}
-          </p>
-        )}
       </div>
       <div className="flex flex-col justify-between basis-2/5">
         <label htmlFor="lastName" className="my-2 font-bold">
@@ -87,12 +76,13 @@ const HelpForm: React.FC<HelpFormProps> = ({ title }: HelpFormProps) => {
           {...register("lastName")}
           className="border border-black outline-1 outline-gray-200"
         />
-        {errors.lastName && (
-          <p className="text-xs text-red-500 w-4/5">
-            {errors.lastName.message}
-          </p>
-        )}
       </div>
+      {errors.firstName && (
+        <p className="text-xs text-red-500 ">{errors.firstName.message}</p>
+      )}
+      {errors.lastName && (
+        <p className="text-xs text-red-500">{errors.lastName.message}</p>
+      )}
 
       <div className="flex flex-col justify-between col-span-full">
         <label htmlFor="phoneNumber" className="my-2 font-bold basis-2/3">
@@ -102,10 +92,12 @@ const HelpForm: React.FC<HelpFormProps> = ({ title }: HelpFormProps) => {
           {...register("phoneNumber")}
           className="border border-black outline-1 outline-gray-200 basis-full"
         />
-        {errors.phoneNumber && (
-          <p className="text-xs text-red-500">{errors.phoneNumber.message}</p>
-        )}
       </div>
+      {errors.phoneNumber && (
+        <p className="text-xs text-red-500 col-span-full">
+          {errors.phoneNumber.message}
+        </p>
+      )}
       <div className="flex flex-col justify-between">
         <label htmlFor="houseNumber" className="my-2 font-bold">
           House Number:
@@ -114,22 +106,22 @@ const HelpForm: React.FC<HelpFormProps> = ({ title }: HelpFormProps) => {
           {...register("houseNumber")}
           className="border resize-none border-black outline-1 outline-gray-200 w-full"
         />
-        {errors.houseNumber && (
-          <p className="text-xs text-red-500">{errors.houseNumber.message}</p>
-        )}
       </div>
       <div className="flex flex-col justify-between">
-        <label htmlFor="state" className="my-2 font-bold">
+        <label htmlFor="streetName" className="my-2 font-bold">
           Street:
         </label>
         <input
           {...register("streetName")}
           className="border resize-none border-black outline-1 outline-gray-200 w-full"
         />
-        {errors.streetName && (
-          <p className="text-xs text-red-500">{errors.streetName.message}</p>
-        )}
       </div>
+      {errors.houseNumber && (
+        <p className="text-xs text-red-500">{errors.houseNumber.message}</p>
+      )}
+      {errors.streetName && (
+        <p className="text-xs text-red-500">{errors.streetName.message}</p>
+      )}
 
       <div className="flex flex-col justify-between">
         <label htmlFor="city" className="my-2 font-bold">
@@ -139,22 +131,24 @@ const HelpForm: React.FC<HelpFormProps> = ({ title }: HelpFormProps) => {
           {...register("city")}
           className="border resize-none border-black outline-1 outline-gray-200 w-full"
         />
-        {errors.city && (
-          <p className="text-xs text-red-500">{errors.city.message}</p>
-        )}
       </div>
+
       <div className="flex flex-col justify-between">
-        <label htmlFor="state" className="my-2 font-bold">
+        <label htmlFor="postalCode" className="my-2 font-bold">
           Postal code:
         </label>
         <input
           {...register("postalCode")}
           className="border resize-none border-black outline-1 outline-gray-200 w-full"
         />
-        {errors.postalCode && (
-          <p className="text-xs text-red-500">{errors.postalCode.message}</p>
-        )}
       </div>
+
+      {errors.city && (
+        <p className="text-xs text-red-500 ">{errors.city.message}</p>
+      )}
+      {errors.postalCode && (
+        <p className="text-xs text-red-500">{errors.postalCode.message}</p>
+      )}
 
       <div className="flex justify-between col-span-full">
         <label htmlFor="gender" className="my-2 font-bold basis-3/6">
@@ -168,10 +162,13 @@ const HelpForm: React.FC<HelpFormProps> = ({ title }: HelpFormProps) => {
           <option value="male">Male</option>
           <option value="female">Female</option>
         </select>
-        {errors.gender && (
-          <p className="text-xs text-red-500">{errors.gender.message}</p>
-        )}
       </div>
+      {errors.gender && (
+        <p className="text-xs text-red-500 text-center col-span-full">
+          {errors.gender.message}
+        </p>
+      )}
+
       <div className="flex justify-between col-span-full">
         <label htmlFor="helpType" className="my-2 font-bold basis-3/6">
           Type of Assistance:
@@ -187,10 +184,12 @@ const HelpForm: React.FC<HelpFormProps> = ({ title }: HelpFormProps) => {
           <option value="clothing">Clothing</option>
           <option value="money">Money</option>
         </select>
-        {errors.helpType && (
-          <p className="text-xs text-red-500">{errors.helpType.message}</p>
-        )}
       </div>
+      {errors.helpType && (
+        <p className="text-xs text-red-500 col-span-full text-center">
+          {errors.helpType.message}
+        </p>
+      )}
       <div className="flex flex-col justify-center items-start col-span-full">
         <label htmlFor="details" className="my-2 font-bold">
           Additional Details:
@@ -204,6 +203,11 @@ const HelpForm: React.FC<HelpFormProps> = ({ title }: HelpFormProps) => {
           <p className="text-xs text-red-500">{errors.details.message}</p>
         )}
       </div>
+      {globalError && (
+        <p className="text-red-500  text-center col-span-full">
+          Somthing went wrong please try again
+        </p>
+      )}
 
       <button
         type="submit"
@@ -213,6 +217,6 @@ const HelpForm: React.FC<HelpFormProps> = ({ title }: HelpFormProps) => {
       </button>
     </form>
   );
-};
+}
 
 export default HelpForm;
