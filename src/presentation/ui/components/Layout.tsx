@@ -7,7 +7,8 @@ import {
   useNavigation,
 } from "react-router-dom";
 import Spinner from "./Spinner";
-import { useAdminContext } from "@/context/AdminContext";
+import { useAdminContext } from "@/app/context/AdminContext";
+import User from "./User";
 
 export function Layout() {
   const { state } = useNavigation();
@@ -21,12 +22,10 @@ export function Layout() {
   const { admin } = useAdminContext();
 
   if (IsAdmin && !admin?.name) {
-    console.log("no admin or manager");
-    return <Navigate to="/admin/" />;
+    return <Navigate to="/login/" />;
   }
 
   if (IsManagement && admin?.role !== "ADMIN") {
-    console.log("no admin");
     return <Navigate to="/admin/help-requests/" />;
   }
 
@@ -52,12 +51,24 @@ function NavBar() {
 
   const showHelpRequests = location.pathname === "/admin/help-offers";
   const showHelpOffers = location.pathname === "/admin/help-requests";
+  const isManagement = location.pathname === "/management";
+
   return (
     <nav className="flex justify-between items-center gap-4 z-50 px-4 py-3 border-b border-b-black shadow-md">
       <div className="text-2xl font-bold">
-        <Link to="/">My App</Link>
+        <Link
+          to={
+            isManagement
+              ? "/management"
+              : showHelpOffers || showHelpRequests
+              ? "/admin/help-requests"
+              : "/"
+          }
+        >
+          My App
+        </Link>
       </div>
-      <ul className="m-0 flex gap-2 list-none items-stretch">
+      <ul className="m-0 flex gap-2 list-none items-center justify-center">
         {showRequestHelp && (
           <li>
             <Link
@@ -78,24 +89,30 @@ function NavBar() {
             </Link>
           </li>
         )}
-        {showHelpRequests && (
+        {(showHelpRequests || isManagement) && (
           <li>
             <Link
-              to="./help-requests"
+              to="admin/help-requests"
               className="bg-gray-800 px-4 py-2 text-white rounded-lg hover:bg-white hover:text-black border border-gray-800"
             >
               Help Requests
             </Link>
           </li>
         )}
-        {showHelpOffers && (
+        {(showHelpOffers || isManagement) && (
           <li>
             <Link
-              to="./help-offers"
+              to="/admin/help-offers"
               className="bg-gray-800 px-4 py-2 text-white rounded-lg hover:bg-white hover:text-black border border-gray-800"
             >
               Help Offers
             </Link>
+          </li>
+        )}
+
+        {(showHelpOffers || showHelpRequests || isManagement) && (
+          <li>
+            <User />
           </li>
         )}
       </ul>
@@ -116,7 +133,7 @@ function Main({
 }) {
   return (
     <main
-      className={`max-w-6xl my-0 mx-auto mb-8 py-0 px-4 flex flex-col items-center ${
+      className={`my-0 mx-auto mb-8 py-0 px-4 flex flex-col items-center ${
         isLoading ? "blur pointer-events-none" : ""
       }`}
     >
