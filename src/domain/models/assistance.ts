@@ -18,4 +18,4 @@ export const schema = z.object({
   details: z.string(),
 });
 
-export type HelpRequestOffer = z.infer<typeof schema>;
+export type Assistance = z.infer<typeof schema>;
