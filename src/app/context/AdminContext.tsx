@@ -1,11 +1,12 @@
-import { Admin } from "@/domain/models/admin";
+import { User } from "@/domain/models/user";
 import React, { ReactNode, useContext } from "react";
 import { createContext } from "react";
 import { useSessionStorage } from "usehooks-ts";
 
+
 type AdminContextType = {
-  admin: Admin | undefined;
-  setAdmin: React.Dispatch<React.SetStateAction<Admin>>;
+  admin: User | undefined;
+  setAdmin: React.Dispatch<React.SetStateAction<User>>;
 };
 
 const AdminContext = createContext<AdminContextType | null>(null);
@@ -23,7 +24,7 @@ export default function AdminContextProvider({
 }: {
   children: ReactNode;
 }) {
-  const [admin, setAdmin] = useSessionStorage<Admin>("admin", {} as Admin);
+  const [admin, setAdmin] = useSessionStorage<User>("admin", {} as User);
 
   return (
     <AdminContext.Provider value={{ admin, setAdmin }}>
