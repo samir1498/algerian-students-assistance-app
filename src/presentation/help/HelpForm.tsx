@@ -1,9 +1,11 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import axios from "@/infrastructure/api/axios";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { HelpRequestOffer, schema } from "@/domain/models/assistance";
+import { Assistance, schema } from "@/domain/models/assistance";
+import { AssistanceRepositoryImpl } from "@/domain/repositories/assistance/assistanceRepositoryImpl";
+
+const repo = new AssistanceRepositoryImpl();
 
 type HelpFormProps = {
   title: string;
@@ -16,7 +18,7 @@ function HelpForm({ title, url }: HelpFormProps) {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<HelpRequestOffer>({
+  } = useForm<Assistance>({
     resolver: zodResolver(schema),
     defaultValues: {
       firstName: "Ahmed",
@@ -35,10 +37,12 @@ function HelpForm({ title, url }: HelpFormProps) {
 
   const navigate = useNavigate();
 
-  const onSubmit = async (data: HelpRequestOffer) => {
+  const onSubmit = async (data: Assistance) => {
     // Handle form submission
     try {
-      const res = await axios.post(url, data);
+      const res = url.includes("offer")
+        ? await repo.createAssistanceOffer(data)
+        : await repo.createAssistanceRequest(data);
       if (res.status === 200) {
         navigate("../success");
       } else {
@@ -55,7 +59,7 @@ function HelpForm({ title, url }: HelpFormProps) {
       className="border border-black p-4 rounded-xl shadow-xl max-w-fit mt-6 px-6 grid grid-cols-2 gap-1"
     >
       <span className="text-2xl font-bold mb-4 basis-full text-center col-span-full">
-        {title}
+        {`${title} Help`}
       </span>
       <div className="flex flex-col justify-between">
         <label htmlFor="firstName" className="my-2 font-bold">
