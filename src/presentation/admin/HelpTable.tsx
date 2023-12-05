@@ -1,16 +1,16 @@
-import { DataTable } from "../../shadcn/components/data-table";
-import { HelpRequestOffer } from "../HelpForm";
 import { useLoaderData } from "react-router-dom";
 import { useEffect } from "react";
 import { ColumnDef } from "@tanstack/react-table";
-import { Button } from "@/ui/shadcn/components/button";
+import { Button } from "@/presentation/ui/components/button";
 import { ArrowUpDown } from "lucide-react";
+import { Assistance } from "@/domain/models/assistance";
+import { DataTable } from "@/presentation/ui/components/data-table";
 
 type HelpTableProps = {
   title: string;
 };
 
-const columns: ColumnDef<HelpRequestOffer>[] = [
+const columns: ColumnDef<Assistance>[] = [
   {
     accessorKey: "firstName",
 
@@ -94,13 +94,13 @@ const columns: ColumnDef<HelpRequestOffer>[] = [
 ];
 
 export default function HelpTable({ title }: HelpTableProps) {
-  const data = useLoaderData() as HelpRequestOffer[];
+  const data = useLoaderData() as Assistance[];
   useEffect(() => {
     console.log(data);
   }, []);
   return (
     <div className="pt-5 px-10">
-      <h1 className="font-bold text-3xl p-4 pl-0">{title}</h1>
+      <h1 className="font-bold text-3xl p-4 pl-0">{`Help ${title}`}</h1>
       <DataTable columns={columns} data={data} />
     </div>
   );
