@@ -32,7 +32,7 @@ import {
 } from "./dropdown-menu";
 import { useState } from "react";
 
-import searchIcon from "../../assets/searchIcon.svg";
+import searchIcon from "@/presentation/assets/searchIcon.svg";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
